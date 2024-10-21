@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: DailyExpenses
+  description: ''
+  contact: {}
+  version: '1.0'
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+servers:
+- url: http://example.com
+  variables: {}
+paths:
+  /user/register:
+    post:
+      tags:
+      - Auth
+      summary: register user1
+      description: >-
+        This is a GET request and it is used to "get" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).
+
+
+        A successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data.
+      operationId: registeruser1
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/registeruser1request'
+              - examples:
+                - name: user1
+                  email: user1@gmail.com
+                  password: '1234567889'
+                  mobileNumber: '1234567890'
+              contentMediaType: application/json
+            example:
+              name: user1
+              email: user1@gmail.com
+              password: '1234567889'
+              mobileNumber: '1234567890'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    parameters: []
+  /user/login:
+    post:
+      tags:
+      - Auth
+      summary: login user
+      description: >-
+        This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).
+
+
+        A successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code.
+      operationId: loginuser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/loginuserrequest'
+              - examples:
+                - email: user1@gmail.com
+                  password: '1234567889'
+              contentMediaType: application/json
+            example:
+              email: user1@gmail.com
+              password: '1234567889'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    parameters: []
+  /expenses/addExpense:
+    get:
+      tags:
+      - Daily-Expense
+      summary: addExpense
+      description: >-
+        This is a GET request and it is used to "get" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).
+
+
+        A successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data.
+      operationId: addExpense
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    parameters: []
+    /user/{id}:
+
+    parameters:
+
+      - in: path
+
+        name: id
+
+        schema:
+
+          type: integer
+
+        required: true
+
+        description: The user ID
+    get:
+      tags:
+      - Daily-Expense
+      summary: getUserDetails
+      description: >-
+        This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).
+
+
+        A successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code.
+      operationId: getUserDetails
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    expenses/user/{id}:
+
+    parameters:
+
+      - in: path
+
+        name: id
+
+        schema:
+
+          type: integer
+
+        required: true
+
+        description: The user ID
+    get:
+      tags:
+      - Daily-Expense
+      summary: getBalance
+      operationId: getBalance
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    parameters: []
+components:
+  schemas:
+    registeruser1request:
+      title: registeruser1request
+      required:
+      - name
+      - email
+      - password
+      - mobileNumber
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        mobileNumber:
+          type: string
+      examples:
+      - name: user1
+        email: user1@gmail.com
+        password: '1234567889'
+        mobileNumber: '1234567890'
+    registeruser2request:
+      title: registeruser2request
+      required:
+      - name
+      - email
+      - password
+      - mobileNumber
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        mobileNumber:
+          type: string
+      examples:
+      - name: user2
+        email: user2@gmail.com
+        password: '1234567889'
+        mobileNumber: '1234567890'
+    loginuserrequest:
+      title: loginuserrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      examples:
+      - email: user1@gmail.com
+        password: '1234567889'
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+- name: Auth
+  description: ''
+- name: Daily-Expense
+  description: ''
